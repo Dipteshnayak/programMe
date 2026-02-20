@@ -125,6 +125,15 @@ function App() {
   const [isRunning, setIsRunning] = useState(false);
   const [pyodide, setPyodide] = useState<any>(null);
   const [isLoadingPyodide, setIsLoadingPyodide] = useState(true);
+  const [mobileView, setMobileView] = useState<'editor' | 'output'>('editor');
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Track window resizing for mobile detection
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Update code when tab changes
   useEffect(() => {
@@ -301,8 +310,24 @@ function App() {
               onFullscreen={handleFullscreen}
               onShare={handleShare}
             />
+            {isMobile && (
+              <div className="mobile-view-toggle">
+                <button
+                  className={mobileView === 'editor' ? 'active' : ''}
+                  onClick={() => setMobileView('editor')}
+                >
+                  ✏️ Editor
+                </button>
+                <button
+                  className={mobileView === 'output' ? 'active' : ''}
+                  onClick={() => setMobileView('output')}
+                >
+                  📋 Output
+                </button>
+              </div>
+            )}
             <div className="editor-area">
-              <div className="editor-pane">
+              <div className={`editor-pane${isMobile && mobileView !== 'editor' ? ' mobile-hidden' : ''}`}>
                 <CodeEditor
                   code={code}
                   language={getLanguage(activeTab)}
@@ -310,7 +335,7 @@ function App() {
                   onChange={(val) => setCode(val || '')}
                 />
               </div>
-              <div className="output-pane">
+              <div className={`output-pane${isMobile && mobileView !== 'output' ? ' mobile-hidden' : ''}`}>
                 {(activeTab === 'python' || activeTab === 'pypy') && isLoadingPyodide && !pyodide && <div className="loading-overlay">Loading Python Environment...</div>}
                 <OutputTerminal output={output} onClear={handleClear} />
               </div>
