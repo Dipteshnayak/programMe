@@ -72,3 +72,21 @@
     text-align: center;
     opacity: 0.6;
 }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .terminal-container {
+        border-left: none;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .terminal-header {
+        height: 40px;
+        padding: 0.4rem 0.75rem;
+    }
+
+    .terminal-content {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+}
