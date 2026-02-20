@@ -103,3 +103,98 @@
     color: var(--accent-primary);
     border-left: 2px solid var(--accent-primary);
 }
+
+/* Mobile sidebar label (hidden on desktop) */
+.sidebar-item-label {
+    display: none;
+}
+
+/* ===== MOBILE: Bottom Navigation Bar ===== */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        order: 2;
+        /* push to bottom */
+        border-right: none;
+        border-top: 1px solid var(--border-color);
+        padding: 0;
+        background-color: var(--bg-secondary);
+    }
+
+    .sidebar-logo {
+        margin-bottom: 0;
+        padding: 0.4rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .menu-btn {
+        width: 36px;
+        height: 36px;
+    }
+
+    .sidebar-logo-img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .sidebar-menu.hide {
+        display: none;
+    }
+
+    .sidebar-menu.show {
+        display: flex;
+    }
+
+    .sidebar-menu {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        gap: 0.25rem;
+        padding: 0.35rem 0.5rem;
+        width: 100%;
+        flex: 0;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .sidebar-menu::-webkit-scrollbar {
+        display: none;
+    }
+
+    .sidebar-item {
+        flex-shrink: 0;
+        padding: 0.35rem 0.5rem;
+        border-radius: 0.5rem;
+        border-left: none !important;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 48px;
+    }
+
+    .sidebar-item.active {
+        border-left: none;
+        border-bottom: 2px solid var(--accent-primary);
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    .sidebar-item svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    /* Show label on mobile */
+    .sidebar-item-label {
+        display: block;
+        font-size: 0.55rem;
+        font-weight: 600;
+        text-align: center;
+        white-space: nowrap;
+        letter-spacing: 0.01em;
+    }
+}
