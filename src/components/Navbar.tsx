@@ -35,8 +35,8 @@ const Navbar: React.FC<NavbarProps> = ({
                     {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                 </button>
                 <button className="share-btn" onClick={onShare}>
-                    <Share2 size={16} style={{ marginRight: '6px' }} />
-                    Share
+                    <Share2 size={16} />
+                    <span className="share-btn-text">Share</span>
                 </button>
                 <button className="run-btn" onClick={onRun} disabled={isRunning}>
                     {isRunning ? 'Running...' : (
