@@ -51,3 +51,83 @@
   z-index: 10;
   backdrop-filter: blur(2px);
 }
+
+/* ===== Mobile View Toggle Button ===== */
+.mobile-view-toggle {
+  display: none;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    /* dynamic viewport height for mobile browsers */
+  }
+
+  .main-content {
+    flex: 1;
+    min-height: 0;
+    height: calc(100vh - 56px);
+    /* subtract bottom sidebar height */
+    height: calc(100dvh - 56px);
+  }
+
+  .editor-area {
+    flex-direction: column;
+    height: calc(100% - 52px);
+    /* subtract mobile navbar height */
+  }
+
+  /* Mobile view toggle for switching editor / output */
+  .mobile-view-toggle {
+    display: flex;
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0;
+    gap: 0;
+  }
+
+  .mobile-view-toggle button {
+    flex: 1;
+    padding: 0.5rem 0;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-sans);
+  }
+
+  .mobile-view-toggle button.active {
+    color: var(--accent-primary);
+    border-bottom-color: var(--accent-primary);
+    background-color: rgba(59, 130, 246, 0.06);
+  }
+
+  .editor-pane {
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  /* When a pane is hidden on mobile */
+  .editor-pane.mobile-hidden,
+  .output-pane.mobile-hidden {
+    display: none;
+  }
+
+  .editor-pane,
+  .output-pane {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .placeholder-content {
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+}
