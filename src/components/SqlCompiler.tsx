@@ -65,6 +65,15 @@ const SqlCompiler: React.FC<{ theme?: 'light' | 'dark' }> = ({ theme = 'dark' })
         setError(null);
         setResults([]);
 
+        if (window.innerWidth <= 768) {
+            setTimeout(() => {
+                const resultsPane = document.querySelector('.sql-results-pane');
+                if (resultsPane) {
+                    resultsPane.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 50);
+        }
+
         try {
             const res = db.exec(code);
             setResults(res);
