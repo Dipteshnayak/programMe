@@ -170,6 +170,9 @@ function App() {
   }, []);
 
   const handleRun = async () => {
+    if (isMobile) {
+      setMobileView('output');
+    }
     if (activeTab === 'python' || activeTab === 'pypy') {
       if (!pyodide) return;
       setIsRunning(true);
